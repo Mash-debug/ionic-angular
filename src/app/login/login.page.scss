@@ -1,0 +1,74 @@
+ion-content {
+    width: 100%;
+    --background: linear-gradient(180deg, #ff00f5ff 0%, #ff00f580 33%, #ff00f500 100%);
+    --color: #f8f8f8;
+    font-family: 'Palanquin', sans-serif;
+}
+
+.outplayed-logo {
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 130px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+ion-input.custom {
+    --placeholder-text: white;
+    font-family: inherit;
+    --border-width: 2px;
+    --border-style: solid;
+    --border-color: #ff00f5;
+}
+
+span {
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+.sign-up-redirect {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: #ff00f5;
+}
+
+.login-btn {
+    font-family: 'Palanquin Dark', sans-serif;
+    min-width: 162px;
+    width: 100%;
+    margin: 0 5px;
+    --padding-top: 8px;
+    --padding-left: 8px;
+    --padding-right: 8px;
+    --padding-bottom: 8px;
+    --background: #ff00f5;
+    --background-activated: #f8f8f8;
+    --color: #f8f8f8;
+    --color-activated: #ff00f5;
+}

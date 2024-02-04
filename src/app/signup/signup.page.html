@@ -1,0 +1,17 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="center">
+    <div class="content">
+      <div class="header">
+        <img class="outplayed-logo" src="../../assets/outplayed.png" alt="">
+        <h1><span>Outplayed</span> Companion</h1>
+      </div>
+      <div class="inputs">
+        <ion-input class="custom" label="Pseudo" type="text" mode="md" label-placement="stacked" fill="outline" placeholder="Pseudo..."></ion-input>
+        <ion-input class="custom" label="Mot de passe" type="password" mode="md" label-placement="stacked" fill="outline" placeholder="Mot de passe..."></ion-input>
+        <ion-input class="custom" label="Confirmation" type="password" mode="md" label-placement="stacked" fill="outline" placeholder="Confirmation du mot de passe..."></ion-input>
+      </div>
+      <p>Déjà un compte ? <a routerLink="/login" style="text-decoration: none;"><span class="sign-up-redirect">Se connecter</span></a></p>
+      <ion-button class="sign-up-btn" shape="round">S'inscrire</ion-button>
+    </div>
+  </ion-grid>
+</ion-content>
