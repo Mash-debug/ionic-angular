@@ -1,23 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Prendre une photo
+      <img alt="logo" id="header_logo" height="60" src="../../assets/outplayed_white.webp">
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Prendre une photo</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Prenez une photo grâce à votre caméra"></app-explore-container>
-
+  <h1>Mes jeux</h1>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addPhotoToGallery()">
-      <ion-icon name="camera"></ion-icon>
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
