@@ -1,0 +1,24 @@
+ion-content {
+    --background: linear-gradient(180deg, #ff00f5ff 0%, #ff00f580 33%, #ff00f500 100%);
+}
+
+ion-toolbar {
+    --background: transparent;
+    --border-color: white;
+    --border-width: 1px;
+    --border-style: solid;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --min-height: 70px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+h1 {
+    font-family: 'Palanquin Dark', sans-serif;
+    margin-left: 16px;
+}

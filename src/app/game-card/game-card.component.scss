@@ -1,0 +1,22 @@
+.game-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 120px;
+    height: 200px;
+    border: 2px solid white;
+    background: black;
+
+    img {
+        object-fit: cover;
+        border-bottom: 1px solid white;
+    }
+
+    p {
+        text-align: center;
+        font-family: 'Palanquin Dark', sans-serif;
+        line-height: 20px;
+        
+    }
+
+}

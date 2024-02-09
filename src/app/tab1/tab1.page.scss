@@ -1,9 +1,53 @@
 ion-content {
     --background: linear-gradient(180deg, #ff00f5ff 0%, #ff00f580 33%, #ff00f500 100%);
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-bottom: 16px
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    font-family: 'Palanquin Dark', sans-serif;
+    z-index: 3;
+}
+
+
+.grid {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+@media screen and (min-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
 
 ion-toolbar {
-    --background: transparent;
+    --background: #EF01E6;
     --border-color: white;
     --border-width: 1px;
     --border-style: solid;
@@ -14,5 +58,4 @@ ion-toolbar {
 
 h1 {
     font-family: 'Palanquin Dark', sans-serif;
-    margin-left: 16px;
 }
