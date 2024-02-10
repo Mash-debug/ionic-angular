@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { PhotoService } from '../services/photo.service';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
+import { User } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -8,9 +11,18 @@ import { PhotoService } from '../services/photo.service';
 })
 export class Tab1Page {
 
-  constructor(private readonly photoService: PhotoService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+  authStateSubscription: Subscription | null = null;
 
-  addPhotoToGallery() {
-    this.photoService.addPhotoToGallery();
+  ionViewWillEnter() {
+    this.authStateSubscription = this.authService.authState$.subscribe((aUser: User | null) => {
+      if(!aUser) {
+        this.router.navigate(["/login"]);
+      }
+    })
+  }
+
+  ionViewDidLeave(): void {
+    this.authStateSubscription?.unsubscribe();
   }
 }

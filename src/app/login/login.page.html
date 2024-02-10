@@ -6,11 +6,12 @@
         <h1><span>Outplayed</span> Companion</h1>
       </div>
       <div class="inputs">
-        <ion-input class="custom" label="Pseudo" type="text" mode="md" label-placement="stacked" fill="outline" placeholder="Pseudo..."></ion-input>
-        <ion-input class="custom" label="Mot de passe" type="password" mode="md" label-placement="stacked" fill="outline" placeholder="Mot de passe..."></ion-input>
+        <ion-input [(ngModel)]="email" class="custom" label="Email" type="email" mode="md" label-placement="stacked" fill="outline" placeholder="Email..."></ion-input>
+        <ion-input [(ngModel)]="password" class="custom" label="Mot de passe" type="password" mode="md" label-placement="stacked" fill="outline" placeholder="Mot de passe..."></ion-input>
       </div>
       <p>Pas encore de compte ? <a routerLink="/signup" style="text-decoration: none;"><span class="sign-up-redirect">S'inscrire</span></a></p>
-      <ion-button class="login-btn" shape="round">Se connecter</ion-button>
+      <p class="errorMessage">{{ errorMessage }}</p>
+      <ion-button class="login-btn" shape="round" (click)="signIn()">Se connecter</ion-button>
     </div>
   </ion-grid>
 </ion-content>

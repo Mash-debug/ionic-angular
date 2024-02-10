@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "outplayed-companion": {
+      "hosting": {
+        "app": [
+          "outplayed-companion"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "outplayed-companion"
+  }
+}

@@ -72,3 +72,10 @@ span {
     --color: #f8f8f8;
     --color-activated: #ff00f5;
 }
+
+.errorMessage {
+    color: rgb(249, 47, 47);
+    text-align: center;
+    width: 50%;
+    line-height: 25px;
+}

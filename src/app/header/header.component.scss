@@ -1,0 +1,22 @@
+ion-title {
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+ion-img {
+    width: 60px;
+    height: 60px;
+}
+
+ion-toolbar {
+    --background: #EF01E6;
+    --border-color: white;
+    --border-width: 1px;
+    --border-style: solid;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --min-height: 70px;
+}
+
+ion-icon {
+    color: white;
+}

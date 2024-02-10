@@ -1,27 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <div class="header">
-        <img alt="logo" id="header_logo" height="60" src="../../assets/outplayed_white.webp">
-        Outplayed Companion
-      </div>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Gallerie</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath"></ion-img>
-      </ion-col>
+      
     </ion-row>
   </ion-grid>
 </ion-content>

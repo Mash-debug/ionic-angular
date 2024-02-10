@@ -27,3 +27,10 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Palanquin&family=Palanquin+Dark&display=swap');
+
+ion-content {
+    --background: linear-gradient(180deg, #ff00f5ff 0%, #ff00f580 33%, #ff00f500 100%);
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-bottom: 16px
+}
