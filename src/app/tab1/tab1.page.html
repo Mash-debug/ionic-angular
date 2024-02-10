@@ -3,14 +3,8 @@
 <ion-content [fullscreen]="true">
   <h1>Mes clips</h1>
   <div class="grid">
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
-    <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card>
+    <!-- <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card> -->
+    <app-game-card *ngFor="let clip of clips" title="{{ clip.title }}" imageUrl="{{ clip.thumbnail }}"></app-game-card>
   </div>
 </ion-content>
 
