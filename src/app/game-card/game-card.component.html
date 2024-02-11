@@ -23,8 +23,8 @@
             <ion-label position="stacked">Titre</ion-label>
             <ion-input [(ngModel)]="newClipTitle" type="text" placeholder="Titre du clip..." class="custom" mode="md" label-placement="stacked" fill="outline" maxlength="15"></ion-input>
 
-            <!-- <ion-label position="stacked">Clip</ion-label>
-            <ion-input (change)="loadClipFromDevice($event)"  type="file" value="Importer un clip..." class="custom" mode="md" label-placement="stacked" fill="outline"></ion-input> -->
+            <ion-label position="stacked">URL du clip</ion-label>
+            <ion-input [(ngModel)]="newClipFile" type="text" class="custom" mode="md" label-placement="stacked" fill="outline" placeholder="URL du clip..."></ion-input>
          
             <ion-label position="stacked">URL de la miniature du clip (optionnel)</ion-label>
             <ion-input [(ngModel)]="newClipThumbnail" type="text" placeholder="URL..." class="custom" mode="md" label-placement="stacked" fill="outline"></ion-input>

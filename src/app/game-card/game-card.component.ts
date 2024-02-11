@@ -22,6 +22,7 @@ export class GameCardComponent  implements OnInit {
   @Output() clipDeleted: EventEmitter<string> = new EventEmitter();
   newClipTitle: string = '';
   newClipThumbnail: string = '';
+  newClipFile: string = '';
   errorMessage: string = '';
   errorMessageModalDetail: string = '';
   defaultImgPath: string = '../../assets/outplayed_white.webp'
@@ -31,6 +32,7 @@ export class GameCardComponent  implements OnInit {
   ngOnInit() {
     this.newClipTitle = this.title;
     this.newClipThumbnail = this.thumbnail ? this.thumbnail : "";
+    this.newClipFile = this.file;
   }
 
   
@@ -49,22 +51,21 @@ export class GameCardComponent  implements OnInit {
       id: this.idClip,
       title: this.newClipTitle,
       thumbnail: this.newClipThumbnail,
-      file: this.file,
+      file: this.newClipFile,
       createdAt: new Date(),
     };
 
-    if(!this.newClipTitle) {
+    if(!this.newClipTitle || !this.newClipFile) {
       this.errorMessage = "Un ou plusieurs champs ne sont pas remplis.";
       return;
     }
 
-    // if(!this.newClipFile || !this.newClipTitle) {
-    //   this.errorMessage = "Un ou plusieurs champs ne sont pas remplis.";
-    //   return;
-    // }
+    if(!this.isValidURL(this.newClipFile) || !this.isValidURL(this.newClipThumbnail)) {
+      this.errorMessage = "URL(s) non valide(s).";
+      return;
+    }
 
     this.modal!.dismiss(clip, 'confirm');
-    // this.modal!.dismiss(clip, 'confirm');
   }
 
   async deleteClipHandler() {
@@ -106,11 +107,17 @@ export class GameCardComponent  implements OnInit {
     // Localement
     this.title = clip.title;
     this.thumbnail = clip.thumbnail;
+    this.file = clip.file;
     this.errorMessage = "";
   }
 
   setDefaultImgPath() {
     this.thumbnail = this.defaultImgPath;
+  }
+
+  private isValidURL(url: string) {
+    const regexURL = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+    return regexURL.test(url);
   }
 
 }

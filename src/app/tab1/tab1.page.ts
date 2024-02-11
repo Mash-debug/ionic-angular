@@ -20,6 +20,8 @@ export class Tab1Page implements DoCheck {
   ionViewWillEnter() {
     this.authStateSubscription = this.authService.authState$.subscribe((aUser: User | null) => {
       if(!aUser) {
+        this.clips = [];
+        this.clipsInit = false;
         this.router.navigate(["/login"]);
       }
     })
