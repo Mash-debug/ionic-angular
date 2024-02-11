@@ -34,3 +34,12 @@ ion-content {
     --padding-end: 16px;
     --padding-bottom: 16px
 }
+
+:root {
+    --ion-background-color: #121212;
+    --ion-text-color: white;
+}
+
+ion-icon {
+    color: white;
+}
