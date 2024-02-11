@@ -15,10 +15,8 @@ export class AuthService {
   constructor() {
     this.authStateSubscription = this.authState$.subscribe((aUser: User | null) => {
       if(aUser) {
-        console.log(aUser);
         this.currentUser = aUser;
       } else {
-        console.log("No currently logged user");
         this.currentUser = null;
       }
     })

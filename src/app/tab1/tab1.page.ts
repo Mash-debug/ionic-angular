@@ -1,6 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Clip, ClipsService } from '../services/clips.service';
@@ -33,7 +33,6 @@ export class Tab1Page implements DoCheck {
 
   async getClips() {
     this.clips = await this.clipsService.getClips(this.authService.currentUser?.uid!);
-    console.log(this.clips)
   }
 
   refreshBtnHandler() {

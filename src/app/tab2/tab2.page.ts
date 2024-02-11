@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ref } from '@angular/fire/storage';
-import { Clip, ClipsService, LocalClip } from '../services/clips.service';
+import { ClipsService, LocalClip } from '../services/clips.service';
 import { AuthService } from '../services/auth.service';
 import { Timestamp } from '@angular/fire/firestore';
 
@@ -30,9 +29,6 @@ export class Tab2Page {
 
     this.errorMessage = "";
 
-    console.log("ok")
-    
-
     const clip: LocalClip = {
       createdAt: new Date() as unknown as Timestamp,
       title: this.newClipTitle,
@@ -44,7 +40,7 @@ export class Tab2Page {
     const isAdded = await this.clipsService.addClip(this.authService.currentUser?.uid!, clip);
     if(isAdded) {
       // Ajouter localement
-      console.log("Clip ajouté");
+      
       this.newClipTitle = "";
       this.newClipThumbnail = "";
       this.newClipFile = "";
