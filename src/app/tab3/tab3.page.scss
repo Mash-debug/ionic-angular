@@ -1,1 +1,19 @@
+* {
+    font-family: 'Palanquin', sans-serif;
+    text-align: justify;    
+}
 
+h1 {
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+ion-content, ion-label {
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

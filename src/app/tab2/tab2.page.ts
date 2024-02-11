@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ref } from '@angular/fire/storage';
 import { Clip, ClipsService, LocalClip } from '../services/clips.service';
 import { AuthService } from '../services/auth.service';
+import { Timestamp } from '@angular/fire/firestore';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class Tab2Page {
     
 
     const clip: LocalClip = {
-      createdAt: new Date(),
+      createdAt: new Date() as unknown as Timestamp,
       title: this.newClipTitle,
       thumbnail: this.newClipThumbnail,
       file: this.newClipFile

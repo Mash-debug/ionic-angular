@@ -9,8 +9,7 @@
   </div>
   
   <div class="grid">
-    <!-- <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card> -->
-    <app-game-card *ngFor="let clip of clips" idClip="{{ clip.id }}" title="{{ clip.title }}" thumbnail="{{ clip.thumbnail }}"></app-game-card>
+    <app-game-card *ngFor="let clip of clips" idClip="{{ clip.id }}" title="{{ clip.title }}" file="{{ clip.file }}" [createdAt]="clip.createdAt" thumbnail="{{ clip.thumbnail }}" (clipDeleted)="refreshBtnHandler()"></app-game-card>
   </div>
 </ion-content>
 

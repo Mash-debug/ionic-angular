@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, getDocs, query, updateDoc, doc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, query, updateDoc, doc, addDoc, Timestamp, deleteDoc } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -24,7 +24,8 @@ export class ClipsService {
     const data = {
       title: clip.title,
       thumbnail: clip.thumbnail,
-      createdAt: clip.createdAt
+      createdAt: clip.createdAt,
+      file: clip.file
     };
 
     try {
@@ -46,10 +47,21 @@ export class ClipsService {
     }
   }
 
+  async deleteClip(userId: string, idClip: string) {
+    const clipRef = doc(this.firestore, `users/${userId}/clips`, idClip);
+
+    try {
+      await deleteDoc(clipRef);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
 }
 
 export interface LocalClip {
-  createdAt: Date;
+  createdAt: Timestamp;
   title: string;
   thumbnail: string;
   file: string;

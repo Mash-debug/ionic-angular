@@ -1,6 +1,6 @@
 <div class="game-card">
   <ion-icon class="options" name="ellipsis-vertical-circle-sharp" id='{{ "open-modal-" +  idClip }}'></ion-icon>
-  <ion-img src="{{ thumbnail }}" (ionError)="setDefaultImgPath()" alt=""></ion-img>
+  <ion-img src="{{ thumbnail }}" (ionError)="setDefaultImgPath()" alt="" id='{{ "open-modal-detail-" + idClip }}'></ion-img>
   <div>
     <p>{{ title }}</p>
   </div>
@@ -30,6 +30,32 @@
             <ion-input [(ngModel)]="newClipThumbnail" type="text" placeholder="URL..." class="custom" mode="md" label-placement="stacked" fill="outline"></ion-input>
             <ion-text *ngIf="errorMessage" color="danger">
               <h1>{{ errorMessage }}</h1>
+            </ion-text>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal #modalDetail trigger='{{ "open-modal-detail-" + idClip }}' (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancelDetail()">Retour</ion-button>
+            </ion-buttons>
+            <ion-title>{{ title }}</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-img class="thumbnail-detail" src="{{ thumbnail }}" (ionError)="setDefaultImgPath()" alt=""></ion-img>
+            <ion-text *ngIf="createdAt">
+              <p>Créé le : {{ createdAt.toDate().toLocaleDateString() }}</p>
+            </ion-text>
+            <ion-buttons>
+              <ion-button class="view-clip-btn" (click)="viewClipHandler()">Voir le clip</ion-button>
+              <ion-button class="delete-clip-btn" (click)="deleteClipHandler()">Supprimer le clip</ion-button>
+            </ion-buttons>
+            <ion-text *ngIf="errorMessageModalDetail" color="danger">
+              <h1>{{ errorMessageModalDetail }}</h1>
             </ion-text>
         </ion-content>
       </ng-template>

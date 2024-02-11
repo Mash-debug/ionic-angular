@@ -1,8 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { Clip, ClipsService } from '../services/clips.service';
 import { AuthService } from '../services/auth.service';
+import { Timestamp } from '@angular/fire/firestore';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-game-card',
@@ -11,12 +13,17 @@ import { AuthService } from '../services/auth.service';
 })
 export class GameCardComponent  implements OnInit {
   @ViewChild(IonModal) modal: IonModal | undefined;
+  @ViewChild("modalDetail") modalDetail: IonModal | undefined;
   @Input() thumbnail: string = '';
+  @Input({required: true}) createdAt: Timestamp | undefined;
   @Input({required: true}) title: string = '';
+  @Input({required: true}) file: string = '';
   @Input({required: true}) idClip: string = '';
+  @Output() clipDeleted: EventEmitter<string> = new EventEmitter();
   newClipTitle: string = '';
   newClipThumbnail: string = '';
   errorMessage: string = '';
+  errorMessageModalDetail: string = '';
   defaultImgPath: string = '../../assets/outplayed_white.webp'
 
   constructor(private clipsService: ClipsService, private authService: AuthService) { }
@@ -31,14 +38,19 @@ export class GameCardComponent  implements OnInit {
     this.modal!.dismiss(null, 'cancel');
   }
 
+  cancelDetail() {
+    this.modalDetail!.dismiss(null, 'cancel');
+  }
+
+
   editClipHandler() {
     
     const clip = {
       id: this.idClip,
       title: this.newClipTitle,
       thumbnail: this.newClipThumbnail,
+      file: this.file,
       createdAt: new Date(),
-      // file: this.newClipFile
     };
 
     if(!this.newClipTitle) {
@@ -55,13 +67,31 @@ export class GameCardComponent  implements OnInit {
     // this.modal!.dismiss(clip, 'confirm');
   }
 
+  async deleteClipHandler() {
+    const isDeleted = await this.clipsService.deleteClip(this.authService.currentUser?.uid!, this.idClip);
+    if(!isDeleted) {
+      this.errorMessageModalDetail = "Une erreur est survenue.";
+      return;
+    }
+    this.errorMessageModalDetail = "";
+    this.modalDetail!.dismiss(null, "deleted");
+  }
+
+  async viewClipHandler() {
+    await Browser.open({url: this.file});
+  }
+
   onWillDismiss(event: Event) {
     const e = event as CustomEvent<OverlayEventDetail<Clip>>;
     if (e.detail.role === 'confirm') {
       const clip = e.detail.data;
       this.editClip(clip!);
+    } else if (e.detail.role === 'deleted') {
+      this.clipDeleted.emit('deleted');
     }
   }
+
+
 
   async editClip(clip: Clip) {
     // Sur Firebase
