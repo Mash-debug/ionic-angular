@@ -1,4 +1,38 @@
 <div class="game-card">
-  <ion-img src="{{ imageUrl }}" alt=""></ion-img>
-  <p>{{ title }}</p>
+  <ion-icon class="options" name="ellipsis-vertical-circle-sharp" id='{{ "open-modal-" +  idClip }}'></ion-icon>
+  <ion-img src="{{ thumbnail }}" (ionError)="setDefaultImgPath()" alt=""></ion-img>
+  <div>
+    <p>{{ title }}</p>
+  </div>
+  
+  
+    <ion-modal trigger='{{ "open-modal-" +  idClip }}' (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Annuler</ion-button>
+            </ion-buttons>
+            <ion-title>Modifier un clip</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="editClipHandler()" [strong]="true">Modifier</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-label position="stacked">Titre</ion-label>
+            <ion-input [(ngModel)]="newClipTitle" type="text" placeholder="Titre du clip..." class="custom" mode="md" label-placement="stacked" fill="outline" maxlength="15"></ion-input>
+
+            <!-- <ion-label position="stacked">Clip</ion-label>
+            <ion-input (change)="loadClipFromDevice($event)"  type="file" value="Importer un clip..." class="custom" mode="md" label-placement="stacked" fill="outline"></ion-input> -->
+         
+            <ion-label position="stacked">URL de la miniature du clip (optionnel)</ion-label>
+            <ion-input [(ngModel)]="newClipThumbnail" type="text" placeholder="URL..." class="custom" mode="md" label-placement="stacked" fill="outline"></ion-input>
+            <ion-text *ngIf="errorMessage" color="danger">
+              <h1>{{ errorMessage }}</h1>
+            </ion-text>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
 </div>

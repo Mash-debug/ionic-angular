@@ -1,10 +1,16 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <h1>Mes clips</h1>
+  <div class="sub-header">
+    <h1>Mes clips</h1>
+    <ion-button class="refresh-btn" (click)="refreshBtnHandler()" size="small">
+      <ion-icon name="refresh-sharp"></ion-icon>
+    </ion-button>
+  </div>
+  
   <div class="grid">
     <!-- <app-game-card imageUrl="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon6018.jpg?image=q_auto,f_webp,w_auto&v=1707283412529" title="League Of Legends"></app-game-card> -->
-    <app-game-card *ngFor="let clip of clips" title="{{ clip.title }}" imageUrl="{{ clip.thumbnail }}"></app-game-card>
+    <app-game-card *ngFor="let clip of clips" idClip="{{ clip.id }}" title="{{ clip.title }}" thumbnail="{{ clip.thumbnail }}"></app-game-card>
   </div>
 </ion-content>
 

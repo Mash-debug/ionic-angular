@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ref } from '@angular/fire/storage';
+import { Clip, ClipsService, LocalClip } from '../services/clips.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -7,7 +10,55 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  newClipTitle: string = "";
+  newClipThumbnail: string = "";
+  newClipFile: string = "";
+  errorMessage: string = "";
+  confirmMessage: string = "";
 
-  constructor() {}
+  constructor(private clipsService: ClipsService, private authService: AuthService) {}
+
+  async addClipHandler() {
+    if(!this.newClipTitle || !this.newClipFile) {
+      this.errorMessage = "Un ou plusieurs champs sont vides";
+      return;
+    } else if(!this.isValidURL(this.newClipFile)) {
+      this.errorMessage = "URL(s) non valide(s).";
+      return;
+    }
+
+    this.errorMessage = "";
+
+    console.log("ok")
+    
+
+    const clip: LocalClip = {
+      createdAt: new Date(),
+      title: this.newClipTitle,
+      thumbnail: this.newClipThumbnail,
+      file: this.newClipFile
+    };
+
+    // Ajouter le clip sur Firebase
+    const isAdded = await this.clipsService.addClip(this.authService.currentUser?.uid!, clip);
+    if(isAdded) {
+      // Ajouter localement
+      console.log("Clip ajouté");
+      this.newClipTitle = "";
+      this.newClipThumbnail = "";
+      this.newClipFile = "";
+      this.confirmMessage = "Nouveau clip ajouté !";
+      setTimeout(() => {
+        this.confirmMessage = "";
+      }, 3000)
+    }
+
+  }
+
+  private isValidURL(url: string) {
+    const regexURL = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+    return regexURL.test(url);
+  }
+
   
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '@angular/fire/auth';
@@ -10,9 +10,10 @@ import { Clip, ClipsService } from '../services/clips.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements DoCheck {
   clips: Clip[] = [];
   authStateSubscription: Subscription | null = null;
+  clipsInit: boolean = false;
 
   constructor(private authService: AuthService, private clipsService: ClipsService, private router: Router) { }
 
@@ -20,8 +21,6 @@ export class Tab1Page {
     this.authStateSubscription = this.authService.authState$.subscribe((aUser: User | null) => {
       if(!aUser) {
         this.router.navigate(["/login"]);
-      } else {
-        this.getClips();
       }
     })
   }
@@ -32,5 +31,18 @@ export class Tab1Page {
 
   async getClips() {
     this.clips = await this.clipsService.getClips(this.authService.currentUser?.uid!);
+    console.log(this.clips)
   }
+
+  refreshBtnHandler() {
+    this.getClips();
+  }
+
+  ngDoCheck(): void {
+    if(this.authService.currentUser && !this.clipsInit) {
+      this.getClips();
+      this.clipsInit = true;
+    }
+  }
+  
 }
